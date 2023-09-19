@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iToons", "iToons\iToons.csproj", "{FDFF6F1C-BFDD-4019-870B-3893B8231F4D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDFF6F1C-BFDD-4019-870B-3893B8231F4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDFF6F1C-BFDD-4019-870B-3893B8231F4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDFF6F1C-BFDD-4019-870B-3893B8231F4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDFF6F1C-BFDD-4019-870B-3893B8231F4D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39779E44-74AB-4C68-93EE-2C8773951F16}
+	EndGlobalSection
+EndGlobal
