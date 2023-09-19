@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JLange\\Source\\Repos\\SQL_Database\\iToons\\iToons\\iToons.csproj": {}
+    "C:\\Users\\JLange\\source\\repos\\SQL_Database\\iToons\\iToons\\iToons.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JLange\\Source\\Repos\\SQL_Database\\iToons\\iToons\\iToons.csproj": {
+    "C:\\Users\\JLange\\source\\repos\\SQL_Database\\iToons\\iToons\\iToons.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JLange\\Source\\Repos\\SQL_Database\\iToons\\iToons\\iToons.csproj",
+        "projectUniqueName": "C:\\Users\\JLange\\source\\repos\\SQL_Database\\iToons\\iToons\\iToons.csproj",
         "projectName": "iToons",
-        "projectPath": "C:\\Users\\JLange\\Source\\Repos\\SQL_Database\\iToons\\iToons\\iToons.csproj",
+        "projectPath": "C:\\Users\\JLange\\source\\repos\\SQL_Database\\iToons\\iToons\\iToons.csproj",
         "packagesPath": "C:\\Users\\JLange\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\JLange\\Source\\Repos\\SQL_Database\\iToons\\iToons\\obj\\",
         "projectStyle": "PackageReference",
