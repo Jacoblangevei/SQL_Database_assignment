@@ -36,6 +36,9 @@ namespace iToons
 
         private string GetConnectionString()
         {
+
+            // Jan's pc: "N-NO-01-01-6005\\SQLEXPRESS";
+
             // Replace this with your actual database connection string
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             builder.DataSource = "N-NO-01-01-6005\\SQLEXPRESS";
@@ -49,6 +52,9 @@ namespace iToons
         {
             List<Customer> customers = new List<Customer>();
 
+            try
+            { 
+
             using SqlConnection sqlConnection = new SqlConnection(GetConnectionString());
             sqlConnection.Open();
 
@@ -57,18 +63,27 @@ namespace iToons
             using SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
             using SqlDataReader reader = sqlCommand.ExecuteReader();
 
-            while (reader.Read())
-            {
-                customers.Add(
-                    new Customer(reader.GetInt32(0),
-                    reader.GetString(1),
-                    reader.GetString(2))
-                    );
+                while (reader.Read())
+                {
+                    customers.Add(new Customer
+                        (reader.GetInt32(0),
+                        reader.GetString(1),
+                        reader.GetString(2))
+                        
+                        );
+                }
             }
-
+            catch (SqlException sqlEx)
+            {
+                Console.WriteLine("Sql exception: " + sqlEx.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             return customers;
-        }
 
+        }
         public (int CustomerId, string FirstName) GetCustomerById(int customerId)
         {
             using SqlConnection sqlConnection = new SqlConnection(GetConnectionString());
@@ -90,13 +105,9 @@ namespace iToons
             else
             {
                 // Handle the case where the customer with the specified Id was not found.
-                // You can throw an exception, return null, or handle it according to your requirements.
                 throw new Exception("Customer not found");
             }
         }
-
-
-
 
     }
 }

@@ -22,6 +22,7 @@ namespace iToons.Models
             Id = id;
             FirstName = firstName;
             LastName = lastName;
+
         }
 
         public override bool Equals(object? obj)

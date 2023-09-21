@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using iToons.Exceptions; // Exceptions folder with custom exceptions.
+ // Exceptions folder with custom exceptions.
 using iToons.Models;
+using Microsoft.Data.SqlClient;
 
 namespace iToons.Repositories
 {
@@ -15,7 +17,39 @@ namespace iToons.Repositories
             _connectionString = connectionString;
         }
 
-        public void AddCustomer(Customer customer)
+        public void ConnectToDb()
+        {
+            try
+            {
+                using SqlConnection sqlConnection = new(GetConnectionString());
+                sqlConnection.Open();
+                Console.WriteLine("Connected");
+            }
+            catch (SqlException sqlException)
+            {
+                Console.WriteLine("Sql exception: " + sqlException.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private string GetConnectionString()
+        {
+
+            // Jan's pc: "N-NO-01-01-6005\\SQLEXPRESS";
+
+            // Replace this with your actual database connection string
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            builder.DataSource = "N-NO-01-01-6005\\SQLEXPRESS";
+            builder.InitialCatalog = "Chinook";
+            builder.IntegratedSecurity = true;
+            builder.TrustServerCertificate = true;
+            return builder.ConnectionString;
+        }
+
+        public void Add(Customer customer)
         {
             using SqlConnection connection = new(_connectionString);
             connection.Open();
@@ -30,34 +64,35 @@ namespace iToons.Repositories
             command.ExecuteNonQuery();
         }
 
-        public List<Customer> GetAllCustomers()
+        public List<Customer> GetAll()
         {
             List<Customer> customers = new List<Customer>();
-            using SqlConnection connection = new(_connectionString);
+            using SqlConnection connection = new SqlConnection(GetConnectionString());
             connection.Open();
-            string sql = "SELECT Id, FirstName, LastName, Country, PostalCode, PhoneNumber, Email FROM Customers";
-            using SqlCommand command = new(sql, connection);
+            string query = "SELECT * FROM Customer";
+            using SqlConnection sqlConnection = new SqlConnection(GetConnectionString());
+            sqlConnection.Open();
+            using SqlCommand command = new SqlCommand(query, connection);
             using SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
                 customers.Add(new Customer
-                {
-                    Id = reader.GetInt32(0),
-                    FirstName = reader.GetString(1),
-                    LastName = reader.GetString(2),
-                    Country = reader.GetString(3),
-                    PostalCode = reader.GetString(4),
-                    PhoneNumber = reader.GetString(5),
-                    Email = reader.GetString(6)
-                });
+                    (reader.GetInt32(0),
+                    reader.GetString(1),
+                    reader.GetString(2)
+                    //reader.GetString(3),
+                    //reader.GetString(4),
+                    //reader.GetString(5),
+                    //reader.GetString(6))
+                    ));
             }
             return customers;
         }
 
-        public Customer GetCustomerById(int id)
+        public Customer GetById(int id)
         {
-            Customer customer = null;
+            Customer customer = new Customer();
             using SqlConnection connection = new(_connectionString);
             connection.Open();
             string sql = "SELECT Id, FirstName, LastName, Country, PostalCode, PhoneNumber, Email FROM Customers WHERE Id = @Id";
@@ -80,7 +115,7 @@ namespace iToons.Repositories
             }
             else
             {
-                throw new CustomerNotFoundException("No customer exists with that ID");
+                throw new Exception("No customer exists with that ID");
             }
             return customer;
         }

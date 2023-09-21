@@ -1,14 +1,15 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using iToons;
 using iToons.Models;
+using iToons.Repositories;
 using Microsoft.Data.SqlClient;
 
 string connectionString = "N-NO-01-01-6005\\SQLEXPRESS";
 DatabaseManager databaseManager = new DatabaseManager(connectionString);
 databaseManager.ConnectToDb();
 
-
-// Get artist by id
+CustomerRepositoryImpl customerRepositoryImpl = new CustomerRepositoryImpl(connectionString);
+customerRepositoryImpl.ConnectToDb();
 
 int customerId = 10;
 
@@ -32,7 +33,7 @@ catch (Exception ex)
 
 
 
-List<Customer> customers = databaseManager.GetAllCustomers();
+List<Customer> customers = customerRepositoryImpl.GetAll();
 
 foreach (var customer in customers)
 {
@@ -40,4 +41,21 @@ foreach (var customer in customers)
 }
 
 
+ICustomerRepository customerRepo =
+    new CustomerRepositoryImpl(GetConnectionString());
+
+
+string GetConnectionString()
+{
+
+    // Jan's pc: "N-NO-01-01-6005\\SQLEXPRESS";
+
+    // Replace this with your actual database connection string
+    SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+    builder.DataSource = "N-NO-01-01-6005\\SQLEXPRESS";
+    builder.InitialCatalog = "Chinook";
+    builder.IntegratedSecurity = true;
+    builder.TrustServerCertificate = true;
+    return builder.ConnectionString;
+}
 
