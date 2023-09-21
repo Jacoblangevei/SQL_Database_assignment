@@ -1,6 +1,6 @@
 ﻿using System;
 
-public interface ICustomerRepository
+public interface ICustomerRepository : ICrudRepository<Customer, int>
 {
     List<Customer> GetAllCustomers();
     Customer GetCustomerById(int id);
