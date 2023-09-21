@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JLange\\source\\repos\\SQL_Database\\iToons\\iToons\\iToons.csproj": {}
+    "C:\\Users\\JGolab\\Documents\\Assingments\\C#\\Assignment2\\iToons\\iToons\\iToons.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JLange\\source\\repos\\SQL_Database\\iToons\\iToons\\iToons.csproj": {
+    "C:\\Users\\JGolab\\Documents\\Assingments\\C#\\Assignment2\\iToons\\iToons\\iToons.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JLange\\source\\repos\\SQL_Database\\iToons\\iToons\\iToons.csproj",
+        "projectUniqueName": "C:\\Users\\JGolab\\Documents\\Assingments\\C#\\Assignment2\\iToons\\iToons\\iToons.csproj",
         "projectName": "iToons",
-        "projectPath": "C:\\Users\\JLange\\source\\repos\\SQL_Database\\iToons\\iToons\\iToons.csproj",
-        "packagesPath": "C:\\Users\\JLange\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JLange\\Source\\Repos\\SQL_Database\\iToons\\iToons\\obj\\",
+        "projectPath": "C:\\Users\\JGolab\\Documents\\Assingments\\C#\\Assignment2\\iToons\\iToons\\iToons.csproj",
+        "packagesPath": "C:\\Users\\JGolab\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JGolab\\Documents\\Assingments\\C#\\Assignment2\\iToons\\iToons\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\JLange\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JGolab\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
