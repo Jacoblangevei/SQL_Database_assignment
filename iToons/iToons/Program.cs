@@ -11,6 +11,20 @@ databaseManager.ConnectToDb();
 CustomerRepositoryImpl customerRepositoryImpl = new CustomerRepositoryImpl(connectionString);
 customerRepositoryImpl.ConnectToDb();
 
+
+List<Customer> highestSpenders = customerRepositoryImpl.GetHighestSpenders();
+
+Console.WriteLine("Highest Spenders");
+Console.WriteLine("=================");
+
+foreach (var customer in highestSpenders)
+{
+    Console.WriteLine($"{customer.FirstName} {customer.LastName}: ${customer.TotalSpent}");
+}
+
+Console.WriteLine("Press any key to exit...");
+Console.ReadKey();
+
 Dictionary<string, int> customerCounts = customerRepositoryImpl.GetCustomerCountByCountry();
 try
 {

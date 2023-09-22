@@ -269,6 +269,47 @@ namespace iToons.Repositories
 
             return customerCounts;
         }
+        public List<Customer> GetHighestSpenders()
+        {
+            List<Customer> highestSpenders = new List<Customer>();
+
+            using (SqlConnection connection = new SqlConnection(GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "SELECT c.CustomerId, c.FirstName, c.LastName, SUM(i.Total) AS TotalSpent " +
+                               "FROM Customer AS c " +
+                               "JOIN Invoice AS i ON c.CustomerId = i.CustomerId " +
+                               "GROUP BY c.CustomerId, c.FirstName, c.LastName " +
+                               "ORDER BY TotalSpent DESC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int customerId = reader.GetInt32(0);
+                            string firstName = reader.GetString(1);
+                            string lastName = reader.GetString(2);
+                            decimal totalSpent = reader.GetDecimal(3);
+
+                            Customer customer = new Customer
+                            {
+                                Id = customerId,
+                                FirstName = firstName,
+                                LastName = lastName,
+                                TotalSpent = totalSpent
+                            };
+
+                            highestSpenders.Add(customer);
+                        }
+                    }
+                }
+            }
+
+            return highestSpenders;
+        }
 
 
 
