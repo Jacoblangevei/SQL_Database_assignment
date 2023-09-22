@@ -9,6 +9,14 @@ string connectionString = "N-NO-01-01-2827\\SQLEXPRESS";
 CustomerRepositoryImpl customerRepositoryImpl = new CustomerRepositoryImpl(connectionString);
 customerRepositoryImpl.ConnectToDb();
 
+var repository = new CustomerRepositoryImpl(connectionString);
+var genres = repository.GetMostPopularGenresByCustomerId(10);
+
+foreach (var genre in genres)
+{
+    Console.WriteLine($"Most popular genre(s) for customer {genre.Id}: {genre.Genre}");
+}
+
 List<Customer> highestSpenders = customerRepositoryImpl.GetHighestSpenders();
 
 Console.WriteLine("Highest Spenders");

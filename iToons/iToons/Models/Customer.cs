@@ -27,7 +27,6 @@ namespace iToons.Models
             PostalCode = postalCode;
             PhoneNumber = phoneNumber;
             Email = email;
-
         }
 
         public override bool Equals(object? obj)

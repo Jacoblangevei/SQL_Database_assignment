@@ -315,5 +315,43 @@ namespace iToons.Repositories
             }
             return highestSpenders;
         }
+
+        public List<CustomerGenre> GetMostPopularGenresByCustomerId(int customerId)
+        {
+            List<CustomerGenre> genres = new List<CustomerGenre>();
+
+            using SqlConnection connection = new SqlConnection(GetConnectionString());
+            connection.Open();
+
+            string sql = @"
+                SELECT TOP 1 WITH TIES g.Name, COUNT(t.TrackId) as TrackCount
+                FROM Customer c
+                JOIN Invoice i ON c.CustomerId = i.CustomerId
+                JOIN InvoiceLine il ON i.InvoiceId = il.InvoiceId
+                JOIN Track t ON il.TrackId = t.TrackId
+                JOIN Genre g ON t.GenreId = g.GenreId
+                WHERE c.CustomerId = @CustomerId
+                GROUP BY g.Name
+                ORDER BY TrackCount DESC
+            ";
+
+            using SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@CustomerId", customerId);
+
+            using SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var genre = new CustomerGenre
+                {
+                    Id = customerId,
+                    Genre = reader.GetString(0)
+                };
+
+                genres.Add(genre);
+            }
+
+            return genres;
+        }
     }
 }
