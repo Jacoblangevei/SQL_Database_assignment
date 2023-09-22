@@ -17,11 +17,15 @@ namespace iToons.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
 
-        public Customer(int id, string firstName, string lastName)
+        public Customer(int id, string firstName, string lastName, string country, string postalCode, string phoneNumber, string email)
         {
             Id = id;
             FirstName = firstName;
             LastName = lastName;
+            Country = country;
+            PostalCode = postalCode;
+            PhoneNumber = phoneNumber;
+            Email = email;
 
         }
 

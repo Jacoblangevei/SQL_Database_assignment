@@ -72,7 +72,10 @@ try
     Customer foundCustomer = customerRepositoryImpl.GetByName(customerToSearch);
 
     // Display the details of the found customer
-    Console.WriteLine($"Customer found: CustomerId: {foundCustomer.Id}, FirstName: {foundCustomer.FirstName}");
+    Console.WriteLine($"Customer found: CustomerId: {foundCustomer.Id}, " +
+        $"Name: {foundCustomer.FirstName}, Last Name: {foundCustomer.LastName}, " +
+        $"Country: {foundCustomer.Country}, Postal Code: {foundCustomer.PostalCode}, " +
+        $"Phone number: {foundCustomer.PhoneNumber}, Email: {foundCustomer.Email}");
 }
 catch (Exception ex)
 {
@@ -87,7 +90,10 @@ try
 
     if (customer.Id != -1)
     {
-        Console.WriteLine($"Customer found: CustomerId: {customer.Id}, Name: {customer.FirstName}");
+        Console.WriteLine($"Customer found: CustomerId: {customer.Id}, " +
+            $"Name: {customer.FirstName}, Last Name: {customer.LastName}, " +
+            $"Country: {customer.Country}, Postal Code: {customer.PostalCode}, " +
+            $"Phone number: {customer.PhoneNumber}, Email: {customer.Email}");
     }
     else
     {
@@ -101,12 +107,13 @@ catch (Exception ex)
 
 
 
-List<Customer> customers = customerRepositoryImpl.GetAll();
+//List<Customer> customers = customerRepositoryImpl.GetAll();
 
-foreach (var customer in customers)
-{
-    Console.WriteLine($"CustomerId: {customer.Id}, Name: {customer.FirstName}");
-}
+//foreach (var customer in customers)
+//{
+//    Console.WriteLine($"Customer found: CustomerId: {customer.Id}, " +
+//    $"Name: {customer.FirstName}, Last Name: {customer.LastName}, ");
+//}
 
 
 ICustomerRepository customerRepo =

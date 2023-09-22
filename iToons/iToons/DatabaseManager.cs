@@ -63,15 +63,15 @@ namespace iToons
             using SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
             using SqlDataReader reader = sqlCommand.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    customers.Add(new Customer
-                        (reader.GetInt32(0),
-                        reader.GetString(1),
-                        reader.GetString(2))
+                //while (reader.Read())
+                //{
+                //    customers.Add(new Customer
+                //        (reader.GetInt32(0),
+                //        reader.GetString(1),
+                //        reader.GetString(2))
                         
-                        );
-                }
+                //        );
+                //}
             }
             catch (SqlException sqlEx)
             {
