@@ -13,4 +13,3 @@ public interface ICustomerRepository : ICrudRepository<Customer, int>
     //List<CustomerSpender> GetTopSpenders();
     //List<CustomerGenre> GetFavoriteGenre(int customerId);
 }
-

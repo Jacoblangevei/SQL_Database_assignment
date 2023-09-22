@@ -1,5 +1,4 @@
-﻿// Exceptions folder with custom exceptions.
-using iToons.Models;
+﻿using iToons.Models;
 using Microsoft.Data.SqlClient;
 
 namespace iToons.Repositories
@@ -33,12 +32,11 @@ namespace iToons.Repositories
 
         private string GetConnectionString()
         {
-
             // Jan's pc: "N-NO-01-01-6005\\SQLEXPRESS";
-
+            // Jacob's pc: "N-NO-01-01-2827\\SQLEXPRESS";
             // Replace this with your actual database connection string
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "N-NO-01-01-6005\\SQLEXPRESS";
+            builder.DataSource = "N-NO-01-01-2827\\SQLEXPRESS";
             builder.InitialCatalog = "Chinook";
             builder.IntegratedSecurity = true;
             builder.TrustServerCertificate = true;
@@ -89,9 +87,7 @@ namespace iToons.Repositories
                     PhoneNumber = phone,
                     Email = email
                 };
-
                 customers.Add(customer);
-       
             }
             return customers;
         }
@@ -317,14 +313,7 @@ namespace iToons.Repositories
                     }
                 }
             }
-
             return highestSpenders;
         }
-
-
-
-
-        // Implement other methods (pagination, update, etc.) similar to above.
     }
 }
-

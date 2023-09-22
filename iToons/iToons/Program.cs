@@ -1,10 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-using iToons;
-using iToons.Models;
+﻿using iToons.Models;
 using iToons.Repositories;
 using Microsoft.Data.SqlClient;
 
-string connectionString = "N-NO-01-01-6005\\SQLEXPRESS";
+string connectionString = "N-NO-01-01-2827\\SQLEXPRESS";
 //DatabaseManager databaseManager = new DatabaseManager(connectionString);
 //databaseManager.ConnectToDb();
 
@@ -25,33 +23,29 @@ Console.WriteLine("Press any key to exit...");
 Console.ReadKey();
 
 Dictionary<string, int> customerCounts = customerRepositoryImpl.GetCustomerCountByCountry();
-try
-{
-    Console.WriteLine("Customer per country");
-
-    foreach (var kvp in customerCounts)
+    try
     {
-        Console.WriteLine($"{kvp.Key}\t{kvp.Value}");
+        Console.WriteLine("Customer per country");
+
+        foreach (var kvp in customerCounts)
+        {
+            Console.WriteLine($"{kvp.Key}\t{kvp.Value}");
+        }
     }
-
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Error: {ex.Message}");
-}
-
-
-
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error: {ex.Message}");
+    }
 
 Customer updatedCustomer = new Customer
 {
-Id = 2, 
-FirstName = "Kasper",
-LastName = "Brud",
-Country = "Norge",
-PostalCode = "3214",
-PhoneNumber = "90270930",
-Email = "kaspeprp@experis.com"
+    Id = 2, 
+    FirstName = "Kasper",
+    LastName = "Brud",
+    Country = "Norge",
+    PostalCode = "3214",
+    PhoneNumber = "90270930",
+    Email = "kaspeprp@experis.com"
 };
 
 try
@@ -65,8 +59,6 @@ catch (Exception ex)
 {
     Console.WriteLine($"Error: {ex.Message}");
 }
-
-
 
 int limit = 10; 
 int offset = 5; 
@@ -91,7 +83,6 @@ catch (Exception ex)
 {
     Console.WriteLine($"Error: {ex.Message}");
 }
-
 
 Customer customerToSearch = new Customer
 {
@@ -137,8 +128,6 @@ catch (Exception ex)
     Console.WriteLine($"Error: {ex.Message}");
 }
 
-
-
 List<Customer> customers = customerRepositoryImpl.GetAll();
 
 foreach (var customer in customers)
@@ -149,22 +138,18 @@ foreach (var customer in customers)
     $"Phone number: {customer.PhoneNumber}, Email: {customer.Email}");
 }
 
-
 ICustomerRepository customerRepo =
     new CustomerRepositoryImpl(GetConnectionString());
 
-
 string GetConnectionString()
 {
-
     // Jan's pc: "N-NO-01-01-6005\\SQLEXPRESS";
-
+    // Jacob's pc: "N-NO-01-01-2827\\SQLEXPRESS";
     // Replace this with your actual database connection string
     SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-    builder.DataSource = "N-NO-01-01-6005\\SQLEXPRESS";
+    builder.DataSource = "N-NO-01-01-2827\\SQLEXPRESS";
     builder.InitialCatalog = "Chinook";
     builder.IntegratedSecurity = true;
     builder.TrustServerCertificate = true;
     return builder.ConnectionString;
 }
-

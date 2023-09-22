@@ -18,7 +18,6 @@ namespace iToons.Models
         public string Email { get; set; }
         public decimal TotalSpent { get; set; }
 
-
         public Customer(int id, string firstName, string lastName, string country, string postalCode, string phoneNumber, string email)
         {
             Id = id;
@@ -47,6 +46,4 @@ namespace iToons.Models
             return $"ID= {Id}, First name: {FirstName}, Last name: {LastName}";
         }
     }
-
-
 }
