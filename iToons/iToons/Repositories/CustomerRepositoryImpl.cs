@@ -92,33 +92,62 @@ namespace iToons.Repositories
 
         public Customer GetById(int id)
         {
-            Customer customer = new Customer();
-            using SqlConnection connection = new(_connectionString);
+            using SqlConnection connection = new SqlConnection(GetConnectionString());
             connection.Open();
-            string sql = "SELECT Id, FirstName, LastName, Country, PostalCode, PhoneNumber, Email FROM Customers WHERE Id = @Id";
+            string sql = "SELECT CustomerId, FirstName, LastName FROM Customer WHERE CustomerId = @Id";
             using SqlCommand command = new(sql, connection);
             command.Parameters.AddWithValue("@Id", id);
             using SqlDataReader reader = command.ExecuteReader();
 
             if (reader.Read())
             {
-                customer = new Customer
+                int customerId = reader.GetInt32(0);
+                string firstName = reader.GetString(1);
+                string lastName = reader.GetString(2);
+
+                return new Customer
                 {
-                    Id = reader.GetInt32(0),
-                    FirstName = reader.GetString(1),
-                    LastName = reader.GetString(2),
-                    Country = reader.GetString(3),
-                    PostalCode = reader.GetString(4),
-                    PhoneNumber = reader.GetString(5),
-                    Email = reader.GetString(6)
+                    Id = customerId,
+                    FirstName = firstName,
+                    LastName = lastName
                 };
             }
             else
             {
                 throw new Exception("No customer exists with that ID");
             }
-            return customer;
         }
+
+        public Customer GetByName(Customer customer)
+        {
+            using SqlConnection sqlConnection = new SqlConnection(GetConnectionString());
+            sqlConnection.Open();
+
+            string query = "SELECT CustomerId, FirstName FROM Customer WHERE FirstName LIKE @Name"; // Replace YourTableName with your actual table name
+
+            using SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@Name", "%" + customer.FirstName + "%"); // Partial match with LIKE
+
+            using SqlDataReader reader = sqlCommand.ExecuteReader();
+
+            if (reader.Read())
+            {
+                int customerId = reader.GetInt32(0);
+                string firstName = reader.GetString(1);
+
+                return new Customer
+                {
+                    Id = customerId,
+                    FirstName = firstName
+                };
+            }
+            else
+            {
+                // Handle the case where no customer with the specified name was found.
+                throw new Exception("Customer not found");
+            }
+        }
+
 
         // Implement other methods (pagination, update, etc.) similar to above.
     }

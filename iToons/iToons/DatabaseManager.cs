@@ -109,5 +109,31 @@ namespace iToons
             }
         }
 
+        public (int CustomerId, string FirstName) GetCustomerByName(string name)
+        {
+            using SqlConnection sqlConnection = new SqlConnection(GetConnectionString());
+            sqlConnection.Open();
+
+            string query = "SELECT CustomerId, FirstName FROM Customer WHERE FirstName LIKE @Name"; // Replace YourTableName with your actual table name
+
+            using SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@Name", "%" + name + "%"); // Partial match with LIKE
+
+            using SqlDataReader reader = sqlCommand.ExecuteReader();
+
+            if (reader.Read())
+            {
+                int customerId = reader.GetInt32(0);
+                string firstName = reader.GetString(1);
+                return (customerId, firstName);
+            }
+            else
+            {
+                // Handle the case where no customer with the specified name was found.
+                throw new Exception("Customer not found");
+            }
+        }
+
+
     }
 }

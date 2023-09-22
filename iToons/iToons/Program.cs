@@ -11,15 +11,34 @@ databaseManager.ConnectToDb();
 CustomerRepositoryImpl customerRepositoryImpl = new CustomerRepositoryImpl(connectionString);
 customerRepositoryImpl.ConnectToDb();
 
+
+Customer customerToSearch = new Customer
+{
+    FirstName = "Helena"
+};
+
+try
+{
+    // Call the GetByName method to search for the customer
+    Customer foundCustomer = customerRepositoryImpl.GetByName(customerToSearch);
+
+    // Display the details of the found customer
+    Console.WriteLine($"Customer found: CustomerId: {foundCustomer.Id}, FirstName: {foundCustomer.FirstName}");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error: {ex.Message}");
+}
+
 int customerId = 10;
 
 try
 {
-    var customer = databaseManager.GetCustomerById(customerId);
+    Customer customer = customerRepositoryImpl.GetById(customerId);
 
-    if (customer.CustomerId != -1)
+    if (customer.Id != -1)
     {
-        Console.WriteLine($"Customer found: CustomerId: {customer.CustomerId}, Name: {customer.FirstName}");
+        Console.WriteLine($"Customer found: CustomerId: {customer.Id}, Name: {customer.FirstName}");
     }
     else
     {
