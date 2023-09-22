@@ -3,8 +3,6 @@ using iToons.Repositories;
 using Microsoft.Data.SqlClient;
 
 string connectionString = "N-NO-01-01-2827\\SQLEXPRESS";
-//DatabaseManager databaseManager = new DatabaseManager(connectionString);
-//databaseManager.ConnectToDb();
 
 CustomerRepositoryImpl customerRepositoryImpl = new CustomerRepositoryImpl(connectionString);
 customerRepositoryImpl.ConnectToDb();
@@ -27,23 +25,20 @@ foreach (var customer in highestSpenders)
     Console.WriteLine($"{customer.FirstName} {customer.LastName}: ${customer.TotalSpent}");
 }
 
-Console.WriteLine("Press any key to exit...");
-Console.ReadKey();
-
-Dictionary<string, int> customerCounts = customerRepositoryImpl.GetCustomerCountByCountry();
-    try
+Console.WriteLine("Customer count by country");
+Console.WriteLine("=================");
+try
+{
+    List<CustomerCountry> customerCounts = customerRepositoryImpl.GetCustomerCountByCountry();
+    foreach (var countInfo in customerCounts)
     {
-        Console.WriteLine("Customer per country");
-
-        foreach (var kvp in customerCounts)
-        {
-            Console.WriteLine($"{kvp.Key}\t{kvp.Value}");
-        }
+        Console.WriteLine($"Country: {countInfo.Country}, Customer Count: {countInfo.Count}");
     }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error: {ex.Message}");
-    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error: {ex.Message}");
+}
 
 Customer updatedCustomer = new Customer
 {

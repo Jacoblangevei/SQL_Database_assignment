@@ -245,19 +245,16 @@ namespace iToons.Repositories
                 }
             }
         }
-        public Dictionary<string, int> GetCustomerCountByCountry()
+        public List<CustomerCountry> GetCustomerCountByCountry()
         {
-            Dictionary<string, int> customerCounts = new Dictionary<string, int>();
-
+            List<CustomerCountry> customerCounts = new List<CustomerCountry>();
             using (SqlConnection connection = new SqlConnection(GetConnectionString()))
             {
                 connection.Open();
-
                 string query = "SELECT Country, COUNT(*) AS CustomerCount " +
                                "FROM Customer " +
                                "GROUP BY Country " +
                                "ORDER BY CustomerCount DESC";
-
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -266,15 +263,19 @@ namespace iToons.Repositories
                         {
                             string country = reader.GetString(0);
                             int customerCount = reader.GetInt32(1);
-
-                            customerCounts.Add(country, customerCount);
+                            CustomerCountry countInfo = new CustomerCountry
+                            {
+                                Country = country,
+                                Count = customerCount
+                            };
+                            customerCounts.Add(countInfo);
                         }
                     }
                 }
             }
-
             return customerCounts;
         }
+
         public List<Customer> GetHighestSpenders()
         {
             List<Customer> highestSpenders = new List<Customer>();
