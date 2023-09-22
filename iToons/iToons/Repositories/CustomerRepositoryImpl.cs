@@ -276,9 +276,9 @@ namespace iToons.Repositories
             return customerCounts;
         }
 
-        public List<Customer> GetHighestSpenders()
+        public List<CustomerSpender> GetHighestSpenders()
         {
-            List<Customer> highestSpenders = new List<Customer>();
+            List<CustomerSpender> highestSpenders = new List<CustomerSpender>();
 
             using (SqlConnection connection = new SqlConnection(GetConnectionString()))
             {
@@ -301,7 +301,7 @@ namespace iToons.Repositories
                             string lastName = reader.GetString(2);
                             decimal totalSpent = reader.GetDecimal(3);
 
-                            Customer customer = new Customer
+                            var customerSpender = new CustomerSpender
                             {
                                 Id = customerId,
                                 FirstName = firstName,
@@ -309,7 +309,7 @@ namespace iToons.Repositories
                                 TotalSpent = totalSpent
                             };
 
-                            highestSpenders.Add(customer);
+                            highestSpenders.Add(customerSpender);
                         }
                     }
                 }

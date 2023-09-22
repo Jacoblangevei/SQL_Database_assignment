@@ -15,7 +15,7 @@ foreach (var genre in genres)
     Console.WriteLine($"Most popular genre(s) for customer {genre.Id}: {genre.Genre}");
 }
 
-List<Customer> highestSpenders = customerRepositoryImpl.GetHighestSpenders();
+List<CustomerSpender> highestSpenders = customerRepositoryImpl.GetHighestSpenders();
 
 Console.WriteLine("Highest Spenders");
 Console.WriteLine("=================");
