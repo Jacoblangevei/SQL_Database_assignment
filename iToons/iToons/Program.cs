@@ -4,12 +4,61 @@ using iToons.Models;
 using iToons.Repositories;
 using Microsoft.Data.SqlClient;
 
-string connectionString = "N-NO-01-01-6005\\SQLEXPRESS";
+string connectionString = "N-NO-01-01-4697\\SQLEXPRESS";
 DatabaseManager databaseManager = new DatabaseManager(connectionString);
 databaseManager.ConnectToDb();
 
 CustomerRepositoryImpl customerRepositoryImpl = new CustomerRepositoryImpl(connectionString);
 customerRepositoryImpl.ConnectToDb();
+
+Customer updatedCustomer = new Customer
+{
+Id = 2, 
+FirstName = "Kasper",
+LastName = "Brud",
+Country = "Norge",
+PostalCode = "3214",
+PhoneNumber = "90270930",
+Email = "kaspeprp@experis.com"
+};
+
+try
+{
+    customerRepositoryImpl.UpdateCustomer(updatedCustomer);
+    Console.WriteLine("Customer updated successfully.");
+    Customer customer = customerRepositoryImpl.GetById(2);
+
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error: {ex.Message}");
+}
+
+
+
+int limit = 10; // Number of customers to retrieve on each page.
+int offset = 5; // Starting position (page number) of the data.
+
+try
+{
+    List<Customer> customerPages = customerRepositoryImpl.GetCustomersPage(limit, offset);
+
+    if (customerPages.Count == 0)
+    {
+        Console.WriteLine("No customers found.");
+    }
+    else
+    {
+        foreach (Customer customer in customerPages)
+        {
+            Console.WriteLine($"ID={customer.Id}, First Name: {customer.FirstName}, Last Name: {customer.LastName}");
+        }
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error: {ex.Message}");
+}
 
 
 Customer customerToSearch = new Customer

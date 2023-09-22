@@ -41,7 +41,7 @@ namespace iToons
 
             // Replace this with your actual database connection string
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "N-NO-01-01-6005\\SQLEXPRESS";
+            builder.DataSource = "N-NO-01-01-4697\\SQLEXPRESS";
             builder.InitialCatalog = "Chinook";
             builder.IntegratedSecurity = true;
             builder.TrustServerCertificate = true;
