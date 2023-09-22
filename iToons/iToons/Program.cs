@@ -11,6 +11,25 @@ databaseManager.ConnectToDb();
 CustomerRepositoryImpl customerRepositoryImpl = new CustomerRepositoryImpl(connectionString);
 customerRepositoryImpl.ConnectToDb();
 
+Dictionary<string, int> customerCounts = customerRepositoryImpl.GetCustomerCountByCountry();
+try
+{
+    Console.WriteLine("Customer per country");
+
+    foreach (var kvp in customerCounts)
+    {
+        Console.WriteLine($"{kvp.Key}\t{kvp.Value}");
+    }
+
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Error: {ex.Message}");
+}
+
+
+
+
 Customer updatedCustomer = new Customer
 {
 Id = 2, 
@@ -36,8 +55,8 @@ catch (Exception ex)
 
 
 
-int limit = 10; // Number of customers to retrieve on each page.
-int offset = 5; // Starting position (page number) of the data.
+int limit = 10; 
+int offset = 5; 
 
 try
 {
@@ -107,13 +126,13 @@ catch (Exception ex)
 
 
 
-//List<Customer> customers = customerRepositoryImpl.GetAll();
+/*List<Customer> customers = customerRepositoryImpl.GetAll();
 
-//foreach (var customer in customers)
-//{
-//    Console.WriteLine($"Customer found: CustomerId: {customer.Id}, " +
-//    $"Name: {customer.FirstName}, Last Name: {customer.LastName}, ");
-//}
+foreach (var customer in customers)
+{
+    Console.WriteLine($"Customer found: CustomerId: {customer.Id}, " +
+    $"Name: {customer.FirstName}, Last Name: {customer.LastName}, ");
+}*/
 
 
 ICustomerRepository customerRepo =

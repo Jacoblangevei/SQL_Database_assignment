@@ -130,7 +130,7 @@ namespace iToons.Repositories
             string query = "SELECT CustomerId, FirstName, LastName, Country, PostalCode FROM Customer WHERE FirstName LIKE @Name"; // Replace YourTableName with your actual table name
 
             using SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@Name", "%" + customer.FirstName + "%"); // Partial match with LIKE
+            sqlCommand.Parameters.AddWithValue("@Name", "%" + customer.FirstName + "%");
 
             using SqlDataReader reader = sqlCommand.ExecuteReader();
 
@@ -153,13 +153,13 @@ namespace iToons.Repositories
             }
             else
             {
-                // Handle the case where no customer with the specified name was found.
+                // If no customer is found
                 throw new Exception("Customer not found");
             }
         }
         public List<Customer> GetCustomersPage(int limit, int offset)
         {
-            List<Customer> customers = new List<Customer>(); // Create a list to store customers
+            List<Customer> customers = new List<Customer>(); 
 
             using (SqlConnection connection = new SqlConnection(GetConnectionString()))
             {
@@ -239,6 +239,37 @@ namespace iToons.Repositories
                 }
             }
         }
+        public Dictionary<string, int> GetCustomerCountByCountry()
+        {
+            Dictionary<string, int> customerCounts = new Dictionary<string, int>();
+
+            using (SqlConnection connection = new SqlConnection(GetConnectionString()))
+            {
+                connection.Open();
+
+                string query = "SELECT Country, COUNT(*) AS CustomerCount " +
+                               "FROM Customer " +
+                               "GROUP BY Country " +
+                               "ORDER BY CustomerCount DESC";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string country = reader.GetString(0);
+                            int customerCount = reader.GetInt32(1);
+
+                            customerCounts.Add(country, customerCount);
+                        }
+                    }
+                }
+            }
+
+            return customerCounts;
+        }
+
 
 
 
