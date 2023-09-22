@@ -80,11 +80,11 @@ namespace iToons.Repositories
                 customers.Add(new Customer
                     (reader.GetInt32(0),
                     reader.GetString(1),
-                    reader.GetString(2)
-                    //reader.GetString(3),
-                    //reader.GetString(4),
-                    //reader.GetString(5),
-                    //reader.GetString(6))
+                    reader.GetString(2),
+                    reader.GetString(3),
+                    reader.GetString(4),
+                    reader.GetString(5),
+                    reader.GetString(6)
                     ));
             }
             return customers;
@@ -94,7 +94,7 @@ namespace iToons.Repositories
         {
             using SqlConnection connection = new SqlConnection(GetConnectionString());
             connection.Open();
-            string sql = "SELECT CustomerId, FirstName, LastName FROM Customer WHERE CustomerId = @Id";
+            string sql = "SELECT CustomerId, FirstName, LastName, Country, PostalCode, Phone, Email FROM Customer WHERE CustomerId = @Id";
             using SqlCommand command = new(sql, connection);
             command.Parameters.AddWithValue("@Id", id);
             using SqlDataReader reader = command.ExecuteReader();
@@ -104,12 +104,20 @@ namespace iToons.Repositories
                 int customerId = reader.GetInt32(0);
                 string firstName = reader.GetString(1);
                 string lastName = reader.GetString(2);
+                string country = reader.GetString(3);
+                string postalCode = reader.GetString(4);
+                string phoneNumber = reader.GetString(5);
+                string email = reader.GetString(6);
 
                 return new Customer
                 {
                     Id = customerId,
                     FirstName = firstName,
-                    LastName = lastName
+                    LastName = lastName,
+                    Country = country,
+                    PostalCode = postalCode,
+                    PhoneNumber = phoneNumber,
+                    Email = email
                 };
             }
             else
@@ -123,7 +131,7 @@ namespace iToons.Repositories
             using SqlConnection sqlConnection = new SqlConnection(GetConnectionString());
             sqlConnection.Open();
 
-            string query = "SELECT CustomerId, FirstName FROM Customer WHERE FirstName LIKE @Name"; // Replace YourTableName with your actual table name
+            string query = "SELECT CustomerId, FirstName, LastName, Country, PostalCode FROM Customer WHERE FirstName LIKE @Name"; // Replace YourTableName with your actual table name
 
             using SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
             sqlCommand.Parameters.AddWithValue("@Name", "%" + customer.FirstName + "%"); // Partial match with LIKE
@@ -134,11 +142,17 @@ namespace iToons.Repositories
             {
                 int customerId = reader.GetInt32(0);
                 string firstName = reader.GetString(1);
+                string lastName = reader.GetString(2);
+                string country = reader.GetString(3);
+                string postalCode = reader.GetString(4);
 
                 return new Customer
                 {
                     Id = customerId,
-                    FirstName = firstName
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Country = country,
+                    PostalCode = postalCode
                 };
             }
             else
