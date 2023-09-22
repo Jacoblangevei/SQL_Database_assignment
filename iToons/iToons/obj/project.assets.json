@@ -2003,19 +2003,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\KBruda\\.nuget\\packages\\": {}
+    "C:\\Users\\JGolab\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\SQL_Database_assignment\\iToons\\iToons\\iToons.csproj",
+      "projectUniqueName": "C:\\Users\\JGolab\\Documents\\Assingments\\C#\\Assignment2\\iToons\\iToons\\iToons.csproj",
       "projectName": "iToons",
-      "projectPath": "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\SQL_Database_assignment\\iToons\\iToons\\iToons.csproj",
-      "packagesPath": "C:\\Users\\KBruda\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\SQL_Database_assignment\\iToons\\iToons\\obj\\",
+      "projectPath": "C:\\Users\\JGolab\\Documents\\Assingments\\C#\\Assignment2\\iToons\\iToons\\iToons.csproj",
+      "packagesPath": "C:\\Users\\JGolab\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JGolab\\Documents\\Assingments\\C#\\Assignment2\\iToons\\iToons\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\KBruda\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JGolab\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -38,7 +38,7 @@ namespace iToons.Repositories
 
             // Replace this with your actual database connection string
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "N-NO-01-01-4697\\SQLEXPRESS";
+            builder.DataSource = "N-NO-01-01-6005\\SQLEXPRESS";
             builder.InitialCatalog = "Chinook";
             builder.IntegratedSecurity = true;
             builder.TrustServerCertificate = true;
@@ -65,23 +65,33 @@ namespace iToons.Repositories
             List<Customer> customers = new List<Customer>();
             using SqlConnection connection = new SqlConnection(GetConnectionString());
             connection.Open();
-            string query = "SELECT * FROM Customer";
-            using SqlConnection sqlConnection = new SqlConnection(GetConnectionString());
-            sqlConnection.Open();
+            string query = "SELECT CustomerId, FirstName, LastName, Country, PostalCode, Phone, Email FROM Customer";
             using SqlCommand command = new SqlCommand(query, connection);
             using SqlDataReader reader = command.ExecuteReader();
 
             while (reader.Read())
             {
-                customers.Add(new Customer
-                    (reader.GetInt32(0),
-                    reader.GetString(1),
-                    reader.GetString(2),
-                    reader.GetString(3),
-                    reader.GetString(4),
-                    reader.GetString(5),
-                    reader.GetString(6)
-                    ));
+                int customerId = reader.GetInt32(0);
+                string firstName = reader.GetString(1);
+                string lastName = reader.GetString(2);
+                string country = reader.GetString(3);
+                string postalCode = reader.IsDBNull(4) ? null : reader.GetString(4);
+                string phone = reader.IsDBNull(5) ? null : reader.GetString(5);
+                string email = reader.GetString(6);
+
+                Customer customer = new Customer
+                {
+                    Id = customerId,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Country = country,
+                    PostalCode = postalCode,
+                    PhoneNumber = phone,
+                    Email = email
+                };
+
+                customers.Add(customer);
+       
             }
             return customers;
         }
@@ -101,8 +111,8 @@ namespace iToons.Repositories
                 string firstName = reader.GetString(1);
                 string lastName = reader.GetString(2);
                 string country = reader.GetString(3);
-                string postalCode = reader.GetString(4);
-                string phoneNumber = reader.GetString(5);
+                string postalCode = reader.IsDBNull(4) ? null : reader.GetString(4);
+                string phone = reader.IsDBNull(5) ? null : reader.GetString(5);
                 string email = reader.GetString(6);
 
                 return new Customer
@@ -112,7 +122,7 @@ namespace iToons.Repositories
                     LastName = lastName,
                     Country = country,
                     PostalCode = postalCode,
-                    PhoneNumber = phoneNumber,
+                    PhoneNumber = phone,
                     Email = email
                 };
             }
@@ -140,7 +150,7 @@ namespace iToons.Repositories
                 string firstName = reader.GetString(1);
                 string lastName = reader.GetString(2);
                 string country = reader.GetString(3);
-                string postalCode = reader.GetString(4);
+                string postalCode = reader.IsDBNull(4) ? null : reader.GetString(4);
 
                 return new Customer
                 {

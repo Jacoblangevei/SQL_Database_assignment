@@ -4,13 +4,12 @@ using iToons.Models;
 using iToons.Repositories;
 using Microsoft.Data.SqlClient;
 
-string connectionString = "N-NO-01-01-4697\\SQLEXPRESS";
-DatabaseManager databaseManager = new DatabaseManager(connectionString);
-databaseManager.ConnectToDb();
+string connectionString = "N-NO-01-01-6005\\SQLEXPRESS";
+//DatabaseManager databaseManager = new DatabaseManager(connectionString);
+//databaseManager.ConnectToDb();
 
 CustomerRepositoryImpl customerRepositoryImpl = new CustomerRepositoryImpl(connectionString);
 customerRepositoryImpl.ConnectToDb();
-
 
 List<Customer> highestSpenders = customerRepositoryImpl.GetHighestSpenders();
 
@@ -140,13 +139,15 @@ catch (Exception ex)
 
 
 
-/*List<Customer> customers = customerRepositoryImpl.GetAll();
+List<Customer> customers = customerRepositoryImpl.GetAll();
 
 foreach (var customer in customers)
 {
-    Console.WriteLine($"Customer found: CustomerId: {customer.Id}, " +
-    $"Name: {customer.FirstName}, Last Name: {customer.LastName}, ");
-}*/
+    Console.WriteLine($"CustomerId: {customer.Id}, " +
+    $"Name: {customer.FirstName}, Last Name: {customer.LastName}, " +
+    $"Country: {customer.Country}, Postal Code: {customer.PostalCode}, " +
+    $"Phone number: {customer.PhoneNumber}, Email: {customer.Email}");
+}
 
 
 ICustomerRepository customerRepo =
