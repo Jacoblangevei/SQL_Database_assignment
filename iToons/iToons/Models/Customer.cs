@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace iToons.Models
 {
+    // Customer Interface
     public struct Customer
     {
         public int Id {  get; set; }

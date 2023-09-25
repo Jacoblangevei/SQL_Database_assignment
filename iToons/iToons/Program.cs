@@ -7,6 +7,7 @@ string connectionString = "N-NO-01-01-2827\\SQLEXPRESS";
 CustomerRepositoryImpl customerRepositoryImpl = new CustomerRepositoryImpl(connectionString);
 customerRepositoryImpl.ConnectToDb();
 
+// Most popular genre for customer 10: Rock
 var repository = new CustomerRepositoryImpl(connectionString);
 var genres = repository.GetMostPopularGenresByCustomerId(10);
 
@@ -15,6 +16,7 @@ foreach (var genre in genres)
     Console.WriteLine($"Most popular genre(s) for customer {genre.Id}: {genre.Genre}");
 }
 
+// Top spenders
 List<CustomerSpender> highestSpenders = customerRepositoryImpl.GetHighestSpenders();
 
 Console.WriteLine("Highest Spenders");
@@ -25,6 +27,7 @@ foreach (var customer in highestSpenders)
     Console.WriteLine($"{customer.FirstName} {customer.LastName}: ${customer.TotalSpent}");
 }
 
+// Customer count by country
 Console.WriteLine("Customer count by country");
 Console.WriteLine("=================");
 try
@@ -68,6 +71,7 @@ int offset = 5;
 
 try
 {
+    // Call the GetCustomersPage method to get a page of customers
     List<Customer> customerPages = customerRepositoryImpl.GetCustomersPage(limit, offset);
 
     if (customerPages.Count == 0)

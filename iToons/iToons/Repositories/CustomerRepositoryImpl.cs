@@ -12,6 +12,7 @@ namespace iToons.Repositories
             _connectionString = connectionString;
         }
 
+        // Connects to the database
         public void ConnectToDb()
         {
             try
@@ -43,6 +44,7 @@ namespace iToons.Repositories
             return builder.ConnectionString;
         }
 
+        // Adds a new customer to the database
         public void Add(Customer customer)
         {
             using SqlConnection connection = new(_connectionString);
@@ -58,6 +60,7 @@ namespace iToons.Repositories
             command.ExecuteNonQuery();
         }
 
+        // Returns all customers from the database
         public List<Customer> GetAll()
         {
             List<Customer> customers = new List<Customer>();
@@ -92,6 +95,7 @@ namespace iToons.Repositories
             return customers;
         }
 
+        // Returns a specific customer by ID
         public Customer GetById(int id)
         {
             using SqlConnection connection = new SqlConnection(GetConnectionString());
@@ -128,6 +132,7 @@ namespace iToons.Repositories
             }
         }
 
+        // Returns a customer by name
         public Customer GetByName(Customer customer)
         {
             using SqlConnection sqlConnection = new SqlConnection(GetConnectionString());
@@ -163,6 +168,8 @@ namespace iToons.Repositories
                 throw new Exception("Customer not found");
             }
         }
+
+        // Returns a page of customers from the database
         public List<Customer> GetCustomersPage(int limit, int offset)
         {
             List<Customer> customers = new List<Customer>(); 
@@ -213,6 +220,7 @@ namespace iToons.Repositories
             return customers; // Return the list of customers
         }
 
+        // Updates an existing customer
         public void UpdateCustomer(Customer updatedCustomer)
         {
             using (SqlConnection connection = new SqlConnection(GetConnectionString()))
@@ -245,6 +253,8 @@ namespace iToons.Repositories
                 }
             }
         }
+
+        // Returns number of customers per country
         public List<CustomerCountry> GetCustomerCountByCountry()
         {
             List<CustomerCountry> customerCounts = new List<CustomerCountry>();
@@ -276,6 +286,7 @@ namespace iToons.Repositories
             return customerCounts;
         }
 
+        // Highest spending customers
         public List<CustomerSpender> GetHighestSpenders()
         {
             List<CustomerSpender> highestSpenders = new List<CustomerSpender>();
@@ -317,6 +328,7 @@ namespace iToons.Repositories
             return highestSpenders;
         }
 
+        // Returns the most popular genre for a customer
         public List<CustomerGenre> GetMostPopularGenresByCustomerId(int customerId)
         {
             List<CustomerGenre> genres = new List<CustomerGenre>();

@@ -3,8 +3,7 @@ using System;
 
 public interface ICustomerRepository : ICrudRepository<Customer, int>
 {
-    //List<Customer> GetAllCustomers();
-    //Customer GetCustomerById(int id);
+    
     //List<Customer> SearchCustomersByName(string name);
     //List<Customer> GetCustomersWithPagination(int limit, int offset);
     //void AddCustomer(Customer customer);

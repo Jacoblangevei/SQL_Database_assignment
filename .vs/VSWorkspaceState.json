@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\iToons",
+    "\\iToons\\iToons",
+    "\\iToons\\iToons\\Models",
+    "\\iToons\\iToons\\Repositories"
   ],
+  "SelectedNode": "\\iToons\\iToons.sln",
   "PreviewInSolutionExplorer": false
 }

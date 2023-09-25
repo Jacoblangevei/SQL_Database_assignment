@@ -15,7 +15,7 @@ public interface ICrudRepository<T, ID>
     /// Inserts a new row into the database based on the paramter.
     /// </summary>
     /// <param name="obj"></param>
-    T GetByName(T name);
+    T GetByName(string name);
     /// <summary>
     /// Inserts a new row into the database based on the paramter.
     /// </summary>
