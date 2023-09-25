@@ -34,6 +34,7 @@ namespace iToons.Repositories
         private string GetConnectionString()
         {
             // Jan's pc: "N-NO-01-01-6005\\SQLEXPRESS";
+            // Kasper's pc: "N-NO-01-01-4697\\SQLEXPRESS";
             // Jacob's pc: "N-NO-01-01-2827\\SQLEXPRESS";
             // Replace this with your actual database connection string
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();

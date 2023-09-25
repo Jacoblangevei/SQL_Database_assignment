@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JLange\\Documents\\GitHub\\SQL_Database_assignment\\iToons\\iToons\\iToons.csproj": {}
+    "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\SQL_Database_assignment\\iToons\\iToons\\iToons.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JLange\\Documents\\GitHub\\SQL_Database_assignment\\iToons\\iToons\\iToons.csproj": {
+    "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\SQL_Database_assignment\\iToons\\iToons\\iToons.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JLange\\Documents\\GitHub\\SQL_Database_assignment\\iToons\\iToons\\iToons.csproj",
+        "projectUniqueName": "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\SQL_Database_assignment\\iToons\\iToons\\iToons.csproj",
         "projectName": "iToons",
-        "projectPath": "C:\\Users\\JLange\\Documents\\GitHub\\SQL_Database_assignment\\iToons\\iToons\\iToons.csproj",
-        "packagesPath": "C:\\Users\\JLange\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JLange\\Documents\\GitHub\\SQL_Database_assignment\\iToons\\iToons\\obj\\",
+        "projectPath": "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\SQL_Database_assignment\\iToons\\iToons\\iToons.csproj",
+        "packagesPath": "C:\\Users\\KBruda\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\KBruda\\source\\repos\\DungeonMaster\\SQL_Database_assignment\\iToons\\iToons\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\JLange\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\KBruda\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -65,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

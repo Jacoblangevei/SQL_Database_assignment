@@ -43,6 +43,9 @@ catch (Exception ex)
     Console.WriteLine($"Error: {ex.Message}");
 }
 
+
+/// Create a new customer
+
 Customer updatedCustomer = new Customer
 {
     Id = 2, 
@@ -66,6 +69,10 @@ catch (Exception ex)
     Console.WriteLine($"Error: {ex.Message}");
 }
 
+
+// . Return a page of customers from the database. This should take in limit and offset as parameters and make use
+// of the SQL limit and offset keywords to get a subset of the customer data. The customer model from above
+// should be reused
 int limit = 10; 
 int offset = 5; 
 
@@ -112,6 +119,8 @@ catch (Exception ex)
     Console.WriteLine($"Error: {ex.Message}");
 }
 
+
+// Find customer by the id
 int customerId = 10;
 
 try
@@ -135,6 +144,9 @@ catch (Exception ex)
     Console.WriteLine($"Error: {ex.Message}");
 }
 
+
+// Get all customers
+
 List<Customer> customers = customerRepositoryImpl.GetAll();
 
 foreach (var customer in customers)
@@ -151,6 +163,7 @@ ICustomerRepository customerRepo =
 string GetConnectionString()
 {
     // Jan's pc: "N-NO-01-01-6005\\SQLEXPRESS";
+    // Kasper's pc: "N-NO-01-01-4697\\SQLEXPRESS";
     // Jacob's pc: "N-NO-01-01-2827\\SQLEXPRESS";
     // Replace this with your actual database connection string
     SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
